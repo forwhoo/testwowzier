@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text_file</title>
+</head>
+<body>
+    <script>
+        // Function to create and download the text file
+        function downloadTextFile() {
+            // Content of the text file
+            var textContent = `Harry Potter, 85
+Hermione Granger, 95
+Ron Weasley, 75
+Draco Malfoy, 80
+Luna Lovegood, 90
+Neville Longbottom, 70
+Ginny Weasley, 88
+Fred Weasley, 82
+George Weasley, 82
+Cho Chang, 78
+Cedric Diggory, 92
+Severus Snape, 98
+Albus Dumbledore, 100
+Minerva McGonagall, 96
+Rubeus Hagrid, 65
+Sirius Black, 85
+Remus Lupin, 89
+Nymphadora Tonks, 84
+Bellatrix Lestrange, 77
+Lord Voldemort, 99`;
+
+            // Create a blob from the text content
+            var blob = new Blob([textContent], { type: 'text/plain' });
+
+            // Create a link element
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'scores.txt';
+
+            // Append link to the body
+            document.body.appendChild(link);
+
+            // Programmatically click the link to trigger the download
+            link.click();
+
+            // Remove the link from the document
+            document.body.removeChild(link);
+        }
+
+        // Function to close the tab or window
+        function closeWindow() {
+            setTimeout(function() {
+                window.close();
+            }, 1000); // Adjust delay as needed to ensure download starts
+        }
+
+        // Trigger the download and close the window when the page loads
+        window.onload = function() {
+            downloadTextFile();
+            closeWindow();
+        };
+    </script>
+</body>
+</html>
